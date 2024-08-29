@@ -18,12 +18,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-const corsOption={
-    origin:'https://kaisehoo.netlify.app',
-    credentials:true
+const corsOptions = {
+  origin: 'https://kaisehoo.netlify.app', // Replace with your client's origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  credentials: true, // Enable this if you need to include cookies in cross-origin requests
 };
 
-app.use(cors(corsOption));
+app.use(cors(corsOptions));
 
 
 // routes
