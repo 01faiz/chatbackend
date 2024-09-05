@@ -20,7 +20,6 @@ app.use(cookieParser());
 
 const corsOptions = {
   origin: 'https://kaisehoo.netlify.app', // Replace with your client's origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   credentials: true, // Enable this if you need to include cookies in cross-origin requests
 };
 
