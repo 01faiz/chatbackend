@@ -74,8 +74,8 @@ export const login = async (req, res) => {
             .cookie("token", token, {
                 maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day in milliseconds
                 httpOnly: true, // Prevents JavaScript from accessing the cookie (helps against XSS)
-                sameSite: 'strict', // Prevents the cookie from being sent with cross-site requests
-                secure: process.env.NODE_ENV === 'production' // Cookie sent only over HTTPS in production
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // 'None' for cross-origin, 'Strict' for same-origin
+                secure: process.env.NODE_ENV === 'production' // Only send over HTTPS in production
             })
             .json({
                 _id: user._id,
@@ -88,6 +88,7 @@ export const login = async (req, res) => {
         return res.status(500).json({ message: "Server error" });
     }
 };
+
 export const logout = (req, res) => {
     try {
         return res.status(200).cookie("token", "", { maxAge: 0 }).json({
